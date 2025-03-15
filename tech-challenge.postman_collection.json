@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "800333b0-f385-4300-ae54-8044b0acb178",
-		"name": "tech-challenge-2",
+		"name": "tech-challenge",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5539706"
 	},
@@ -21,11 +21,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user",
+					"raw": "https://backend-tech-challenge.onrender.com/user",
 					"host": [
-						"localhost"
+						"https://backend-tech-challenge.onrender.com"
 					],
-					"port": "3000",
 					"path": [
 						"user"
 					]
@@ -48,11 +47,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user/auth",
+					"raw": "https://backend-tech-challenge.onrender.com/user/auth",
 					"host": [
-						"localhost"
+						"https://backend-tech-challenge.onrender.com"
 					],
-					"port": "3000",
 					"path": [
 						"user",
 						"auth"
@@ -79,11 +77,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user",
+					"raw": "https://backend-tech-challenge.onrender.com/user",
 					"host": [
-						"localhost"
+						"https://backend-tech-challenge.onrender.com"
 					],
-					"port": "3000",
 					"path": [
 						"user"
 					]
@@ -107,11 +104,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/account",
+					"raw": "https://backend-tech-challenge.onrender.com/account",
 					"host": [
-						"localhost"
+						"https://backend-tech-challenge.onrender.com"
 					],
-					"port": "3000",
 					"path": [
 						"account"
 					]
@@ -144,11 +140,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/account/transaction",
+					"raw": "https://backend-tech-challenge.onrender.com/account/transaction",
 					"host": [
-						"localhost"
+						"https://backend-tech-challenge.onrender.com"
 					],
-					"port": "3000",
 					"path": [
 						"account",
 						"transaction"
@@ -173,11 +168,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/account/67607133f840bb97892eb659/statement",
+					"raw": "https://backend-tech-challenge.onrender.com/account/67607133f840bb97892eb659/statement",
 					"host": [
-						"localhost"
+						"https://backend-tech-challenge.onrender.com"
 					],
-					"port": "3000",
 					"path": [
 						"account",
 						"67607133f840bb97892eb659",
