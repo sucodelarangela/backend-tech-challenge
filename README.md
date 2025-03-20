@@ -1,4 +1,4 @@
-## Backend Tech Challenge
+# Backend Tech Challenge
 
 Este projeto é um Backend que fornece uma API e disponibiliza os dados para [Backend For Frontend (BFF)](https://github.com/sucodelarangela/bff-tech-challenge) para o Tech Challenge da FIAP.
 
