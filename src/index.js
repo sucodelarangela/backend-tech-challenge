@@ -8,15 +8,22 @@ const swaggerDocs =  require('./swagger')
 const UserController = require('./controller/User')
 const cors = require('cors')
 
-app.use(Express.json())
+app.use(Express.json());
 
 app.use(cors({
-    origin: '*'
-}))
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+}));
 
 app.use(publicRoutes)
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+        return next();
+    }
     if (req.url.includes('/docs')) {
         return next();
     }
