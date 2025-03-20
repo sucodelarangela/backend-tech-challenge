@@ -17,9 +17,14 @@ const update = async (id, data) => {
   return DetailedAccount.findByIdAndUpdate(id, data, { new: true });
 };
 
+const remove = async (id) => {
+  return DetailedAccount.findByIdAndDelete(id);
+};
+
 module.exports = {
   create,
   getById,
   get,
   update,
+  remove,
 };

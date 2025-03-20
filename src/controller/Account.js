@@ -16,6 +16,7 @@ class AccountController {
         getAccount: require("../feature/Account/getAccount"),
         updateTransaction: require("../feature/Transaction/updateTransaction"),
         saveTransaction: require("../feature/Transaction/saveTransaction"),
+        deleteTransaction: require("../feature/Transaction/deleteTransaction"),
         getTransaction: require("../feature/Transaction/getTransaction"),
         getCard: require("../feature/Card/getCard"),
       },
@@ -139,6 +140,59 @@ class AccountController {
     } catch (error) {
       res.status(500).json({
         message: "Erro ao atualizar a transação",
+        error: error.message,
+      });
+    }
+  }
+
+  async deleteTransaction(req, res) {
+    const {
+      deleteTransaction,
+      transactionRepository,
+      getAccount,
+      accountRepository,
+    } = this.di;
+    const { transactionId, accountId } = req.query;
+    const userId = req.user.id;
+
+    try {
+      if (!transactionId || !accountId) {
+        return res.status(400).json({
+          message:
+            "Parâmetros obrigatórios ausentes: transactionId e accountId são necessários",
+        });
+      }
+
+      const account = await getAccount({
+        repository: accountRepository,
+        filter: { userId, _id: accountId },
+      });
+
+      if (!account || account.length === 0) {
+        return res.status(403).json({
+          message: "Acesso negado à conta especificada",
+        });
+      }
+
+      const result = await deleteTransaction({
+        id: transactionId,
+        accountId,
+        repository: transactionRepository,
+      });
+
+      if (!result) {
+        return res.status(404).json({
+          message:
+            "Transação não encontrada ou não pertence à conta especificada",
+        });
+      }
+
+      res.status(200).json({
+        message: "Transação excluída com sucesso",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Erro ao excluir a transação",
         error: error.message,
       });
     }

@@ -104,6 +104,46 @@ router.put(
 
 /**
  * @swagger
+ * /account/transaction/delete:
+ *   delete:
+ *     summary: Exclui uma transação
+ *     tags: [Transações]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: accountId
+ *         required: true
+ *         description: "ID da conta associada à transação."
+ *         schema:
+ *           type: string
+ *           example: "123456"
+ *       - in: query
+ *         name: transactionId
+ *         required: true
+ *         description: "ID da transação a ser excluída."
+ *         schema:
+ *           type: string
+ *           example: "78910"
+ *     responses:
+ *       200:
+ *         description: Transação excluída com sucesso.
+ *       400:
+ *         description: Parâmetros obrigatórios ausentes.
+ *       401:
+ *         description: Token inválido.
+ *       403:
+ *         description: Acesso negado.
+ *       404:
+ *         description: Transação não encontrada.
+ */
+router.delete(
+  "/account/transaction/delete",
+  accountController.deleteTransaction.bind(accountController)
+);
+
+/**
+ * @swagger
  * /account/{accountId}/statement:
  *   get:
  *     summary: Obtém extrato da conta

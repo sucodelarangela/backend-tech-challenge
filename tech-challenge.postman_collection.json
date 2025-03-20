@@ -192,6 +192,45 @@
 			"response": []
 		},
 		{
+			"name": "Deletar transação",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklzcmFlbCAyIiwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6InRlc3RlcyIsImlkIjoiNjc2MDcxMzNmODQwYmI5Nzg5MmViNjU3IiwiaWF0IjoxNzM0MzczNjg4LCJleHAiOjE3MzQ0MTY4ODh9.jtaRKSifN_j7rFWn1KkH5fykecwhXFW0G4wLqj24I-k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://backend-tech-challenge.onrender.com/account/transaction/delete?accountId=67dc45849f7fea030d0a5708&transactionId=67dc45a29f7fea030d0a5710",
+					"host": [
+						"https://backend-tech-challenge.onrender.com"
+					],
+					"path": [
+						"account",
+						"transaction",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "67dc45849f7fea030d0a5708"
+						},
+						{
+							"key": "transactionId",
+							"value": "67dc45a29f7fea030d0a5710"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Busca extrato da conta",
 			"request": {
 				"auth": {
