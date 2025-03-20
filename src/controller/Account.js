@@ -49,10 +49,14 @@ class AccountController {
         repository: cardRepository,
       });
 
+      const balance = transactions.reduce((total, transaction) => {
+        return total + (transaction.value || 0);
+      }, 0);
+
       res.status(200).json({
         message: "Conta encontrada carregado com sucesso",
         result: {
-          account,
+          account: [{ ...account[0], balance }],
           transactions,
           cards,
         },
