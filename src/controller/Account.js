@@ -14,6 +14,7 @@ class AccountController {
         saveAccount: require("../feature/Account/saveAccount"),
         getUser: require("../feature/User/getUser"),
         getAccount: require("../feature/Account/getAccount"),
+        updateTransaction: require("../feature/Transaction/updateTransaction"),
         saveTransaction: require("../feature/Transaction/saveTransaction"),
         getTransaction: require("../feature/Transaction/getTransaction"),
         getCard: require("../feature/Card/getCard"),
@@ -84,6 +85,63 @@ class AccountController {
       message: "Transação criada com sucesso",
       result: transaction,
     });
+  }
+
+  async updateTransaction(req, res) {
+    const {
+      updateTransaction,
+      transactionRepository,
+      getAccount,
+      accountRepository,
+    } = this.di;
+    const { transactionId } = req.params;
+    const { accountId, value, type, from, to, anexo } = req.body;
+    const userId = req.user.id;
+
+    try {
+      const account = await getAccount({
+        repository: accountRepository,
+        filter: { userId, _id: accountId },
+      });
+
+      if (!account || account.length === 0) {
+        return res.status(403).json({
+          message: "Acesso negado à conta especificada ou conta não encontrada",
+        });
+      }
+
+      const transactionDTO = {
+        value,
+        from,
+        to,
+        anexo,
+        type,
+      };
+
+      const transaction = await updateTransaction({
+        id: transactionId,
+        accountId,
+        transaction: transactionDTO,
+        repository: transactionRepository,
+      });
+
+      if (!transaction) {
+        return res.status(404).json({
+          message:
+            "Transação não encontrada ou não pertence à conta especificada",
+        });
+      }
+
+      res.status(200).json({
+        message: "Transação atualizada com sucesso",
+        result: transaction,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Erro ao atualizar a transação",
+        error: error.message,
+      });
+    }
   }
 
   async getStatment(req, res) {
